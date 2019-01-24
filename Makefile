@@ -1,13 +1,13 @@
 all: classifier
 
-classifier: main.o functions.o
-	clang++ main.o functions.o -o classifier
+classifier: main.o
+	clang++ main.cpp functions.cpp -o classifier
 
-main.o: main.cpp
-	clang++ -c main.cpp
-
-functions.o: functions.cpp
-	clang++ -c functions.cpp
+# main.o: main.cpp
+# 	clang++ -c main.cpp
+#
+# functions.o: functions.cpp
+# 	clang++ -c functions.cpp
 
 test:
 	./test.sh
