@@ -1,6 +1,6 @@
 //
 //  main.cpp
-//  Assignment3
+//  Assignment4
 //
 //  Created by Ben Trueman on 1/15/19.
 //  Copyright © 2019 Ben Trueman. All rights reserved.
