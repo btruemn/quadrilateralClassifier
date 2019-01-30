@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <regex>
+#include <set>
 #include "functions.hpp"
 using namespace std;
 
@@ -17,14 +18,24 @@ using namespace std;
  Input lines are of the form:
  x1 y1 x2 y2 x3 y3
  All input values are integers in the range 0..100 (inclusive).
- Does not do input validation.
- */
+
+ If your program gets an invalid line of input it must print one of the strings below and then terminate. It should print:
+ 
+ "error 1" -- if the line contains the wrong number of points, contains invalid characters, has coordinates out of the range 0..100, or otherwise fails to describe three points (six integer values)
+ "error 2" -- if any two points coincide
+ "error 3" -- if any two line segments representing sides cross each other
+ "error 4" -- if any three points are colinear1
+*/
 
 int main(int argc, const char * argv[]) {
     vector<int> vertices;
     string line;
     while(getline(cin, line)){
+       
+        
         vertices = parseToVector(line);
+        
+        
         printQuadrilateralType(vertices);
     }
 }
