@@ -24,4 +24,11 @@ std::vector<int> parseToVector(std::string &string);
  */
 void printQuadrilateralType(const std::vector<int> &vect);
 
+bool error1(std::string s);
+bool error1(std::vector<int> vect);
+bool error2(std::vector<int> vect);
+bool error3(std::vector<int> vect);
+bool error4(std::vector<int> vect);
+void exitError(std::string error);
+
 #endif /* functions_hpp */

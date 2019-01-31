@@ -14,13 +14,10 @@
 #include <cmath>
 #include <iostream>
 
-//must contain 0-9 or space only
+//must contain 0-9 or space only. Returns true if an errof is found http://www.cplusplus.com/reference/string/string/find_first_not_of/
 bool error1(std::string s){
     size_t found = s.find_first_not_of("0123456789 ");
-    if (found!=std::string::npos){ //http://www.cplusplus.com/reference/string/string/find_first_not_of/
-        return true;
-    }
-    return false;
+    return (found != std::string::npos);
 }
 
 //must contain 6 ints in range 0 to 100
@@ -35,7 +32,7 @@ bool error1(std::vector<int> vect){
 
 void exitError(std::string error){
     std::cout << error << std::endl;
-    exit (EXIT_FAILURE);
+//    exit (EXIT_FAILURE);
 }
 
 //"error 2" -- if any two points coincide http://www.cplusplus.com/reference/vector/vector/operators/
@@ -72,15 +69,14 @@ bool linesIntersect(int x1, int y1, //Line 1 start
         double y3my4 = y3 - y4;
         
         double denom = Det(x1mx2, y1my2, x3mx4, y3my4);
-        if(denom == 0.0)//Lines don't seem to cross
+        if(denom == 0.0)
         {
             return false;
         }
-        return true; //All OK
+        return true;
     }
 
 //"error 3" -- if any two line segments representing sides cross each other
-//
 bool error3(std::vector<int> vect){
     if(linesIntersect(0, 0, vect[0], vect[1], vect[0], vect[1], vect[2], vect[3])) return true; //AB vs BC
     if(linesIntersect(vect[0], vect[1], vect[2], vect[3], vect[2], vect[3], vect[4], vect[5])) return true; //BC vs CD
@@ -91,27 +87,44 @@ bool error3(std::vector<int> vect){
     return false;
 }
 
+//adapted from https://www.geeksforgeeks.org/program-check-three-points-collinear/
+bool collinear(int x1, int y1, int x2,int y2, int x3, int y3) {
+    int a = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
+    return (a == 0);
+}
+
+//"error 4" -- if any three points are colinear
+bool error4(std::vector<int> vect){
+    if(collinear(0, 0, vect[0], vect[1], vect[2], vect[3])) return true;//A B C
+    if(collinear(0, 0, vect[0], vect[1], vect[4], vect[5])) return true;//A B D
+    if(collinear(0, 0, vect[2], vect[3], vect[4], vect[5])) return true;//A C D
+    if(collinear(vect[0], vect[1], vect[2], vect[3], vect[4], vect[5])) return true;//B C D
+    return false;
+}
+
 std::vector<int> parseToVector(std::string &string){
     
-    if(error1(string)){
-        exitError("error 1");
-    }
+//    if(error1(string)){
+//        exitError("error 1");
+//    }
     std::stringstream iss(string);
     std::string number;
     std::vector<int> parsedInput;
     while (iss >> number){
         parsedInput.push_back(std::stoi(number));
     }
-    
-    if(error1(parsedInput)){
-        exitError("error 1");
-    }
-    if(error2(parsedInput)){
-        exitError("error 2");
-    }
-    if(error3(parsedInput)){
-        exitError("error 3");
-    }
+//    if(error1(parsedInput)){
+//        exitError("error 1");
+//    }
+//    if(error2(parsedInput)){
+//        exitError("error 2");
+//    }
+//    if(error3(parsedInput)){
+//        exitError("error 3");
+//    }
+//    if(error4(parsedInput)){
+//        exitError("error 4");
+//    }
     return parsedInput;
 }
  

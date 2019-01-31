@@ -31,11 +31,27 @@ int main(int argc, const char * argv[]) {
     vector<int> vertices;
     string line;
     while(getline(cin, line)){
-       
-        
+        if(error1(line)){
+            exitError("error 1");
+            continue;
+        }
         vertices = parseToVector(line);
-        
-        
+        if(error1(vertices)){
+            exitError("error 1");
+            continue;
+        }
+        if(error2(vertices)){
+            exitError("error 2");
+            continue;
+        }
+        if(error3(vertices)){
+            exitError("error 3");
+            continue;
+        }
+        if(error4(vertices)){
+            exitError("error 4");
+            continue;
+        }
         printQuadrilateralType(vertices);
     }
 }
