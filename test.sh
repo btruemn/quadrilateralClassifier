@@ -1,5 +1,5 @@
 ./classifier < input.txt > output.txt
-diff output.txt expectedOutput.txt
+diff output.txt testFiles/expectedOutput.txt
 error=$?
 if [ $error -eq 0 ]
 then
