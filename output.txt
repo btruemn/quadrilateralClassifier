@@ -1,0 +1,10 @@
+square
+square
+rectangle
+rectangle
+trapezoid
+kite
+parallelogram
+quadrilateral
+rhombus
+trapezoid
