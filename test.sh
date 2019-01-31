@@ -96,20 +96,20 @@ else
 echo "rhombus test didn't run properly"
 exit 1
 fi
-./main < testFiles/quadrilateral.txt > testFiles/outputQuadrilateral.txt
-diff testFiles/outputQuadrilateral.txt testFiles/quadrilateralOutput.txt
-error=$?
-if [ $error -eq 0 ]
-then
-echo "quadrilateral test passed"
-elif [ $error -eq 1 ]
-then
-echo "quadrilateral test failed"
-exit 1
-else
-echo "quadrilateral test didn't run properly"
-exit 1
-fi
+#./main < testFiles/quadrilateral.txt > testFiles/outputQuadrilateral.txt
+#diff testFiles/outputQuadrilateral.txt testFiles/quadrilateralOutput.txt
+#error=$?
+#if [ $error -eq 0 ]
+#then
+#echo "quadrilateral test passed"
+#elif [ $error -eq 1 ]
+#then
+#echo "quadrilateral test failed"
+#exit 1
+#else
+#echo "quadrilateral test didn't run properly"
+#exit 1
+#fi
 ./main < testFiles/error1.txt > testFiles/outputError1.txt
 diff testFiles/outputError1.txt testFiles/error1Output.txt
 error=$?
