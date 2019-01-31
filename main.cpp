@@ -64,6 +64,7 @@ bool error2(std::vector<int> vect){
     return false;
 }
 
+//for error3 - not working yet
 std::vector<double> lineLineIntersection(std::vector<int> vect) {
     // Line AB represented as a1x + b1y = c1
     double a1 = vect[1] - 0;
