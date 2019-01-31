@@ -8,22 +8,21 @@ test: main
 
 clean:
 	rm -f main
-	rm -f testFiles/squareOutput.txt
-	rm -f testFiles/parallelogramOutput.txt
+	rm -f testFiles/outputSquare.txt
 	rm -f testFiles/rhombusOutput.txt
-	rm -f testFiles/quadrilateralOutput.txt
-	rm -f testFiles/error1Output.txt
-	rm -f testFiles/error2Output.txt
-	rm -f testFiles/error3Output.txt
-	rm -f testFiles/error4Output.txt
-	rm -f testFiles/error5Output.txt
-	rm -f testFiles/error6Output.txt
-	rm -f testFiles/error7Output.txt
-	rm -f testFiles/error8Output.txt
-	rm -f testFiles/error9Output.txt
-	rm -f testFiles/error10Output.txt
-	rm -f testFiles/error11Output.txt
-	rm -f testFiles/error12Output.txt
+	rm -f testFiles/outputErrror1.txt
+	rm -f testFiles/outputErrror2.txt
+	rm -f testFiles/outputErrror3.txt
+	rm -f testFiles/outputErrror4.txt
+	rm -f testFiles/outputErrror5.txt
+	rm -f testFiles/outputErrror6.txt
+	rm -f testFiles/outputErrror7.txt
+	rm -f testFiles/outputErrror8.txt
+	rm -f testFiles/outputErrror9.txt
+	rm -f testFiles/outputError10.txt
+	rm -f testFiles/outputError11.txt
+	rm -f testFiles/outputError12.txt
+	rm -f testFiles/expectedOutput.txt
 
 cover:
 	clang++ -fprofile-instr-generate -fcoverage-mapping main.cpp -o main
