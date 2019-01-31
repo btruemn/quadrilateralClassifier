@@ -9,7 +9,7 @@ test: main
 clean:
 	rm -f main
 	rm -f testFiles/outputSquare.txt
-	rm -f testFiles/rhombusOutput.txt
+	rm -f testFiles/outputRhomus.txt
 	rm -f testFiles/outputErrror1.txt
 	rm -f testFiles/outputErrror2.txt
 	rm -f testFiles/outputErrror3.txt
@@ -41,6 +41,5 @@ cover:
 	-LLVM_PROFILE_FILE="profraw/error11.profraw" ./main < testFiles/error11.txt > testFiles/outputError11.txt
 	-LLVM_PROFILE_FILE="profraw/error12.profraw" ./main < testFiles/error12.txt > testFiles/outputError12.txt
 	-LLVM_PROFILE_FILE="profraw/input.profraw" ./main < testFiles/input.txt  > testFiles/expectedOutput.txt
-	# llvm-profdata merge -sparse profraw/input.profraw  -o main.profdata
-	llvm-profdata merge -sparse  profraw/rhombus.profraw profraw/error1.profraw profraw/error2.profraw profraw/error3.profraw profraw/error4.profraw profraw/error5.profraw profraw/error6.profraw profraw/error10.profraw profraw/error11.profraw profraw/error12.profraw profraw/input.profraw  -o main.profdata #profraw/error7.profraw profraw/error8.profraw profraw/error9.profraw # profraw/square.profraw profraw/rectangle.profraw profraw/trapezoid.profraw profraw/kite.profraw profraw/parallelogram.profraw profraw/quadrilateral.profraw
+	llvm-profdata merge -sparse  profraw/rhombus.profraw profraw/error1.profraw profraw/error2.profraw profraw/error3.profraw profraw/error4.profraw profraw/error5.profraw profraw/error6.profraw profraw/error7.profraw profraw/error8.profraw profraw/error9.profraw profraw/error10.profraw profraw/error11.profraw profraw/error12.profraw profraw/input.profraw profraw/square.profraw -o main.profdata #profraw/error7.profraw profraw/error8.profraw profraw/error9.profraw # profraw/square.profraw profraw/rectangle.profraw profraw/trapezoid.profraw profraw/kite.profraw profraw/parallelogram.profraw profraw/quadrilateral.profraw
 	llvm-cov show ./main -instr-profile=main.profdata

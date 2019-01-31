@@ -14,6 +14,7 @@
 #include <sstream>
 #include <cmath>
 using namespace std;
+#define pdd pair<double, double>
 
 /* Classifies Quadrilaterals according to https://www.varsitytutors.com/hotmath/hotmath_help/topics/quadrilaterals.
  In particular, see the Venn diagram at the bottom of the page. Always classify a quadrilateral as precisely as possible. In other words, a square is also a rectangle, but since "square" is the more precise classification it is what you should print.
@@ -64,39 +65,73 @@ bool error2(std::vector<int> vect){
     return false;
 }
 
-//for error3 - not working yet
-std::vector<double> lineLineIntersection(std::vector<int> vect) {
+//"error 3" -- if any three points are colinear
+//A1 and A2 are 0 and 1
+//B1 and B2 are 2 and 3
+//C1 and C2 are 4 and 5
+//D1 and D2 are 6 and 7
+pdd lineLineIntersection (pdd A, pdd B, pdd C, pdd D) {
     // Line AB represented as a1x + b1y = c1
-    double a1 = vect[1] - 0;
-    double b1 = 0 - vect[2];
-    double c1 = a1*(0) + b1*(0);
+    double a1 = B.second - A.second;
+    double b1 = A.first - B.first;
+    double c1 = a1*(A.first) + b1*(A.second);
     
     // Line CD represented as a2x + b2y = c2
-    double a2 = vect[5] - vect[3];
-    double b2 = vect[2] - vect[4];
-    double c2 = a2*(vect[2])+ b2*(vect[3]);
+    double a2 = D.second - C.second;
+    double b2 = C.first - D.first;
+    double c2 = a2*(C.first)+ b2*(C.second);
     
-    double x = a1*b2;
-    double y = a2*b1;
-    double determinant = x - y;
+    double determinant = a1*b2 - a2*b1;
     
-    //Lines are parallel
-    if (determinant == 0) {
-        std::vector<double> returnPair;
+    if (determinant == 0)
+    {
         // The lines are parallel. This is simplified
-        returnPair.push_back(__FLT_MAX__);
-        returnPair.push_back(__FLT_MAX__);
-        return returnPair;
+        // by returning a pair of FLT_MAX
+        return make_pair((double)__FLT_MAX__, (double)__FLT_MAX__);
     }
-    //Lines intersect
-    else {
-        std::vector<double> returnPair;
+    else
+    {
         double x = (b2*c1 - b1*c2)/determinant;
         double y = (a1*c2 - a2*c1)/determinant;
-        returnPair.push_back(x);
-        returnPair.push_back(y);
-        return returnPair;
+        return make_pair(x, y);
     }
+}
+
+bool error3 (const vector<int> &coords){
+    pdd A = make_pair(0, 0);
+    pdd B = make_pair(coords[0], coords[1]);
+    pdd C = make_pair(coords[2], coords[3]);
+    pdd D = make_pair(coords[4], coords[5]);
+    
+    //line AB BC CD DA
+    pdd intersection1 = lineLineIntersection(A, B, C, D);
+    pdd intersection2 = lineLineIntersection(A, D, C, B);
+    
+    int xMax = 0;
+    int yMax = 0;
+    
+    for(int i = 0 ; i<coords.size(); i+=2){
+        if(coords[i]>xMax){
+            xMax=coords[i];
+        }
+    }
+    
+    for(int i=1; i<coords.size(); i+=2){
+        if(coords[i]>yMax){
+            yMax=coords[i];
+        }
+    }
+    if (intersection1.first<xMax && intersection1.second<yMax && intersection1.first>0 && intersection1.second>0){
+        //if intersection y > AB max y
+        if(intersection1.second > coords[1]){
+            return false;
+        }
+        return true;
+    }
+    if(intersection2.first<xMax && intersection2.second<yMax && intersection2.second>0 && intersection2.second>0){
+        return true;
+    }
+    return false;
 }
 
 //adapted from https://www.geeksforgeeks.org/program-check-three-points-collinear/
@@ -215,10 +250,10 @@ int main(int argc, const char * argv[]) {
             exitError("error 2");
 //            continue;
         }
-//        if(error3(vertices)){
-//            exitError("error 3");
+        if(error3(vertices)){
+            exitError("error 3");
 //            continue;
-//        }
+        }
         if(error4(vertices)){
             exitError("error 4");
 //            continue;
