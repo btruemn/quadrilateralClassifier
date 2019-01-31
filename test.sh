@@ -1,3 +1,17 @@
+./classifier < input.txt > output.txt
+diff output.txt expectedOutput.txt
+error=$?
+if [ $error -eq 0 ]
+then
+echo "test passed"
+elif [ $error -eq 1 ]
+then
+echo "test failed"
+exit 1
+else
+echo "test didn't run properly"
+exit 1
+fi
 ./main < testFiles/square.txt > testFiles/outputSquare.txt
 diff testFiles/outputSquare.txt testFiles/squareOutput.txt
 error=$?
@@ -12,20 +26,20 @@ else
 echo "square test didn't run properly"
 exit 1
 fi
-./main < testFiles/rectangle.txt > testFiles/outputRectangle.txt
-diff testFiles/outputRectangle.txt testFiles/rectangleOutput.txt
-error=$?
-if [ $error -eq 0 ]
-then
-echo "rectangle test passed"
-elif [ $error -eq 1 ]
-then
-echo "rectangle test failed"
-exit 1
-else
-echo "rectangle test didn't run properly"
-exit 1
-fi
+#./main < testFiles/rectangle.txt > testFiles/outputRectangle.txt
+#diff testFiles/outputRectangle.txt testFiles/rectangleOutput.txt
+#error=$?
+#if [ $error -eq 0 ]
+#then
+#echo "rectangle test passed"
+#elif [ $error -eq 1 ]
+#then
+#echo "rectangle test failed"
+#exit 1
+#else
+#echo "rectangle test didn't run properly"
+#exit 1
+#fi
 ./main < testFiles/trapezoid.txt > testFiles/outputTrapezoid.txt
 diff testFiles/outputTrapezoid.txt testFiles/trapezoidOutput.txt
 error=$?

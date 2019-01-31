@@ -9,7 +9,7 @@ test: main
 clean:
 	rm -f main
 	rm -f testFiles/squareOutput.txt
-	rm -f testFiles/rectangleOutput.txt
+#	rm -f testFiles/rectangleOutput.txt
 	rm -f testFiles/trapezoidOutput.txt
 	rm -f testFiles/kiteOutput.txt
 	rm -f testFiles/parallelogramOutput.txt
