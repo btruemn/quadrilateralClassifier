@@ -48,44 +48,66 @@ bool error2(std::vector<int> vect){
     return false;
 }
 
-//helper for linesIntersect
-inline double Det(double a, double b, double c, double d)
-{
-    return a*d - b*c;
-}
 
-//https://stackoverflow.com/questions/16524096/how-to-calculate-the-point-of-intersection-between-two-lines
-//Calculate intersection of two lines, return true if found, false if not found or error
-bool linesIntersect(int x1, int y1, //Line 1 start
-                           int x2, int y2, //Line 1 end
-                           int x3, int y3, //Line 2 start
-                           int x4, int y4) //Line 2 end
-    {
-        //http://mathworld.wolfram.com/Line-LineIntersection.html
-        
-        double x1mx2 = x1 - x2;
-        double x3mx4 = x3 - x4;
-        double y1my2 = y1 - y2;
-        double y3my4 = y3 - y4;
-        
-        double denom = Det(x1mx2, y1my2, x3mx4, y3my4);
-        if(denom == 0.0)
-        {
-            return false;
-        }
-        return true;
+//bool error3(std::vector<int> vect){
+//    if(doIntersect(0, 0, vect[0], vect[1], vect[2], vect[3])) return true; //AB vs BC
+//    if(doIntersect(vect[0], vect[1], vect[2], vect[3], vect[4], vect[5])) return true; //BC vs CD
+//    if(doIntersect(vect[2], vect[3], vect[4], vect[5], 0,0)) return true; //CD vs DA
+//    if(doIntersect(vect[4], vect[5], 0, 0, vect[0], vect[1])) return true; //DA vs AB
+////    if(doIntersect(0, 0, vect[0], vect[1], vect[4], vect[5], 0,0)) return true;//AB vs CD
+////    if(doIntersect(vect[0], vect[1], vect[2], vect[3], vect[4], vect[5], 0,0)) return true;//BC vs DA
+//    return false;
+//}
+
+////A1 and A2 are 0 and 1 == 0,0
+////B1 and B2 are 2 and 3 == vect[0] vect[1]
+////C1 and C2 are 4 and 5 == vect[2] vect[3]
+////D1 and D2 are 6 and 7 == vect[4] vect[5]
+std::vector<double> lineLineIntersection(std::vector<int> vect) {
+    // Line AB represented as a1x + b1y = c1
+    double a1 = vect[1] - 0;
+    double b1 = 0 - vect[2];
+    double c1 = a1*(0) + b1*(0);
+
+    // Line CD represented as a2x + b2y = c2
+    double a2 = vect[5] - vect[3];
+    double b2 = vect[2] - vect[4];
+    double c2 = a2*(vect[2])+ b2*(vect[3]);
+
+    double x = a1*b2;
+    double y = a2*b1;
+    double determinant = x - y;
+
+    //Lines are parallel
+    if (determinant == 0) {
+        std::vector<double> returnPair;
+        // The lines are parallel. This is simplified
+        returnPair.push_back(__FLT_MAX__);
+        returnPair.push_back(__FLT_MAX__);
+        return returnPair;
     }
-
-//"error 3" -- if any two line segments representing sides cross each other
-bool error3(std::vector<int> vect){
-    if(linesIntersect(0, 0, vect[0], vect[1], vect[0], vect[1], vect[2], vect[3])) return true; //AB vs BC
-    if(linesIntersect(vect[0], vect[1], vect[2], vect[3], vect[2], vect[3], vect[4], vect[5])) return true; //BC vs CD
-    if(linesIntersect(vect[2], vect[3], vect[4], vect[5], vect[4], vect[5], 0,0)) return true; //CD vs DA
-    if(linesIntersect(vect[4], vect[5], 0,0, 0, 0, vect[0], vect[1])) return true; //DA vs AB
-    if(linesIntersect(0, 0, vect[0], vect[1], vect[4], vect[5], 0,0)) return true;//AB vs CD
-    if(linesIntersect(vect[0], vect[1], vect[2], vect[3], vect[4], vect[5], 0,0)) return true;//BC vs DA
-    return false;
+    //Lines intersect
+    else {
+        std::vector<double> returnPair;
+        double x = (b2*c1 - b1*c2)/determinant;
+        double y = (a1*c2 - a2*c1)/determinant;
+        returnPair.push_back(x);
+        returnPair.push_back(y);
+        return returnPair;
+    }
 }
+
+////"error 3" -- if any two line segments representing sides cross each other
+//bool error3(std::vector<int> points) {
+//
+//    std::vector<double> intersection = lineLineIntersection(points);
+//
+//    //If they're parallel return false
+//    if (intersection[0] == __FLT_MAX__ && intersection[1] == __FLT_MAX__) {
+//        return false;
+//    }
+//    return true;
+//}
 
 //adapted from https://www.geeksforgeeks.org/program-check-three-points-collinear/
 bool collinear(int x1, int y1, int x2,int y2, int x3, int y3) {

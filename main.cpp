@@ -44,10 +44,10 @@ int main(int argc, const char * argv[]) {
             exitError("error 2");
             continue;
         }
-        if(error3(vertices)){
-            exitError("error 3");
-            continue;
-        }
+//        if(error3(vertices)){
+//            exitError("error 3");
+//            continue;
+//        }
         if(error4(vertices)){
             exitError("error 4");
             continue;
