@@ -154,7 +154,12 @@ std::vector<int> parseToVector(std::string &string){
     std::string number;
     std::vector<int> parsedInput;
     while (iss >> number){
-        parsedInput.push_back(std::stoi(number));
+        try{
+            parsedInput.push_back(std::stoi(number));
+        }catch(const std::out_of_range& e){
+            std::cout << "error 1" << std::endl;
+            exit (EXIT_FAILURE);
+        }
     }
     return parsedInput;
 }
@@ -162,7 +167,7 @@ std::vector<int> parseToVector(std::string &string){
 //slope = (Y2 - Y1)/(X2 - X1)
 double slope(const int &xA, const int &yA, const int &xB, const int &yB){
     if(yB - yA == 0 || xB - xA == 0) return 0; //return zero for horizontal or vertical lines
-    double slopeAB = (double)(yB - yA)/(xB - xA);
+    double slopeAB = (double)(yB - yA)/(double)(xB - xA);
     return slopeAB;
 }
 

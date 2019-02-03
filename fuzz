@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sh coverage.sh
+sh tests.sh

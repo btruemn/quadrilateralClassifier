@@ -24,6 +24,12 @@ clean:
 	rm -f testFiles/outputError12.txt
 	rm -f testFiles/expectedOutput.txt
 
+fuzzer:
+	clang++ -std=c++11 main.cpp -o main
+	chmod +x shapes.py
+	./shapes.py
+	chmod +x fuzz
+
 cover:
 	clang++ -fprofile-instr-generate -fcoverage-mapping main.cpp -o main
 	LLVM_PROFILE_FILE="profraw/square.profraw" ./main < testFiles/square.txt > testFiles/outputSquare.txt
