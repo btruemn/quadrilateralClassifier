@@ -6,10 +6,10 @@
 //  Copyright © 2019 Ben Trueman. All rights reserved.
 //
 
+//#include "functions.hpp"
 #include <iostream>
 #include <regex>
 #include <set>
-//#include "functions.hpp"
 #include <vector>
 #include <sstream>
 #include <cmath>
@@ -32,13 +32,13 @@ using namespace std;
 */
 
 //must contain 0-9 or space only. Returns true if an errof is found http://www.cplusplus.com/reference/string/string/find_first_not_of/
-bool error1(std::string s){
+bool isError1(std::string s){
     size_t found = s.find_first_not_of("0123456789 ");
     return (found != std::string::npos);
 }
 
 //must contain 6 ints in range 0 to 100
-bool error1(std::vector<int> vect){
+bool isError1(std::vector<int> vect){
     if(vect.size() != 6) return true;
     
     for(int i: vect){
@@ -53,7 +53,7 @@ void exitError(std::string error){
 }
 
 //"error 2" -- if any two points coincide http://www.cplusplus.com/reference/vector/vector/operators/
-bool error2(std::vector<int> vect){
+bool isError2(std::vector<int> vect){
     std::vector<int> A = {0,0};
     std::vector<int> B = {vect[0],vect[1]};
     std::vector<int> C = {vect[2],vect[3]};
@@ -97,7 +97,7 @@ pdd lineLineIntersection (pdd A, pdd B, pdd C, pdd D) {
     }
 }
 
-bool error3 (const vector<int> &coords){
+bool isError3 (const vector<int> &coords){
     pdd A = make_pair(0, 0);
     pdd B = make_pair(coords[0], coords[1]);
     pdd C = make_pair(coords[2], coords[3]);
@@ -242,30 +242,25 @@ int main(int argc, const char * argv[]) {
     vector<int> vertices;
     string line;
     while(getline(cin, line)){
-        if(error1(line)){
+        if(isError1(line)){
             exitError("error 1");
-//            continue;
         }
         vertices = parseToVector(line);
-        if(error1(vertices)){
+        if(isError1(vertices)){
             exitError("error 1");
-//            continue;
         }
         assert(vertices.size() == 6);
         for(int i: vertices){
             assert(i <= 100 && i >= 0);
         }
-        if(error2(vertices)){
+        if(isError2(vertices)){
             exitError("error 2");
-//            continue;
         }
-        if(error3(vertices)){
+        if(isError3(vertices)){
             exitError("error 3");
-//            continue;
         }
         if(error4(vertices)){
             exitError("error 4");
-//            continue;
         }
         printQuadrilateralType(vertices);
     }
