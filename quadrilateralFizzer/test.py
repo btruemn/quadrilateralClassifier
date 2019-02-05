@@ -6,7 +6,7 @@ from os.path import join as pjoin
 import string
 
 def make_randomInt_1_to_100():
-    for index in range(1, 101):
+    for index in range(1, 401):
         filename = "%s.txt" % index
         path_to_file = pjoin("testFiles","randomInt",filename)
         file = open(path_to_file,"w")
@@ -15,7 +15,7 @@ def make_randomInt_1_to_100():
         file.close()
 
 def make_randomNumber_101_to_sysMaxSize():
-    for index in range(1, 101):
+    for index in range(1, 401):
         filename = "%s.txt" % index
         path_to_file = pjoin("testFiles", "randomLargeInt", filename)
         file = open(path_to_file, "w")
@@ -27,7 +27,7 @@ def make_randomNumber_101_to_sysMaxSize():
         file.close()
 
 def make_random_ascii_string():
-    for index in range(1, 101):
+    for index in range(1, 401):
         filename = "%s.txt" % index
         path_to_file = pjoin("testFiles","randomASCII",filename)
         file = open(path_to_file,"w")

@@ -9,19 +9,19 @@ clang++ -std=c++11 -fsanitize=address main.cpp -o main
 errorCounter=0;
 
 #RANDOM INTS
-for i in `seq 1 100`;
+for i in `seq 1 400`;
 do
     ./main < "quadrilateralFizzer/testFiles/randomInt/$i.txt" > "quadrilateralFizzer/testFiles/randomInt/output$i.txt"
 done
 
 #RANDOM ASCII
-for i in `seq 1 100`;
+for i in `seq 1 400`;
 do
     ./main < "quadrilateralFizzer/testFiles/randomASCII/$i.txt" > "quadrilateralFizzer/testFiles/randomASCII/output$i.txt"
 done
 
 #RANDOM LARGE INT
-for i in `seq 1 100`;
+for i in `seq 1 400`;
 do
     ./main < "quadrilateralFizzer/testFiles/randomLargeInt/$i.txt" > "quadrilateralFizzer/testFiles/randomLargeInt/output$i.txt"
 done
@@ -53,7 +53,6 @@ if [ $error -eq 1 ]
 then
 errorCounter+=1
 fi
-
 
 if [ $errorCounter \> 0 ]
 then
