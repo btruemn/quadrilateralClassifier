@@ -47,6 +47,7 @@ str+="profraw/rectangle.profraw"
 llvm-profdata merge -sparse $str -o coverage.profdata
 # llvm-cov show ./main -instr-profile=coverage.profdata > coverage.txt
 llvm-cov show ./main -instr-profile=coverage.profdata > coverage.txt
+echo "coverage generated"
 
 # for i in 'seq 1 800';
 # do

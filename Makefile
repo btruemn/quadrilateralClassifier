@@ -22,7 +22,11 @@ clean:
 	rm -f testFiles/outputError10.txt
 	rm -f testFiles/outputError11.txt
 	rm -f testFiles/outputError12.txt
-	rm -f testFiles/expectedOutput.txt
+	# rm -f testFiles/expectedOutput.txt
+	rm -f profraw/*
+	rm -f quadrilateralFizzer/testFiles/randomASCII/*
+	rm -f quadrilateralFizzer/testFiles/randomInt/*
+	rm -f quadrilateralFizzer/testFiles/randomLargeInt/*
 
 fuzzer:
 	clang++ -std=c++11 main.cpp -o main

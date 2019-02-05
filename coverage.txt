@@ -38,8 +38,8 @@
    38|  1.44k|}
    39|       |
    40|       |//must contain 6 ints in range 0 to 100
-   41|    745|bool error1(std::vector<int> vect){
-   42|    745|    if(vect.size() != 6) return true;
+   41|    746|bool error1(std::vector<int> vect){
+   42|    746|    if(vect.size() != 6) return true;
    43|    743|    
    44|  4.45k|    for(int i: vect){
    45|  4.45k|        if(i < 0 || i > 100) return true;
@@ -47,10 +47,10 @@
    47|    743|    return false;
    48|    743|}
    49|       |
-   50|    574|void exitError(std::string error){
-   51|    574|    std::cout << error << std::endl;
-   52|    574|        exit (EXIT_FAILURE);
-   53|    574|}
+   50|    586|void exitError(std::string error){
+   51|    586|    std::cout << error << std::endl;
+   52|    586|        exit (EXIT_FAILURE);
+   53|    586|}
    54|       |
    55|       |//"error 2" -- if any two points coincide http://www.cplusplus.com/reference/vector/vector/operators/
    56|    743|bool error2(std::vector<int> vect){
@@ -84,17 +84,17 @@
    84|  1.48k|    double determinant = a1*b2 - a2*b1;
    85|  1.48k|    
    86|  1.48k|    if (determinant == 0)
-   87|    787|    {
-   88|    787|        // The lines are parallel. This is simplified
-   89|    787|        // by returning a pair of FLT_MAX
-   90|    787|        return make_pair((double)__FLT_MAX__, (double)__FLT_MAX__);
-   91|    787|    }
-   92|    699|    else
-   93|    699|    {
-   94|    699|        double x = (b2*c1 - b1*c2)/determinant;
-   95|    699|        double y = (a1*c2 - a2*c1)/determinant;
-   96|    699|        return make_pair(x, y);
-   97|    699|    }
+   87|    786|    {
+   88|    786|        // The lines are parallel. This is simplified
+   89|    786|        // by returning a pair of FLT_MAX
+   90|    786|        return make_pair((double)__FLT_MAX__, (double)__FLT_MAX__);
+   91|    786|    }
+   92|    700|    else
+   93|    700|    {
+   94|    700|        double x = (b2*c1 - b1*c2)/determinant;
+   95|    700|        double y = (a1*c2 - a2*c1)/determinant;
+   96|    700|        return make_pair(x, y);
+   97|    700|    }
    98|  1.48k|}
    99|       |
   100|    743|bool error3 (const vector<int> &coords){
@@ -112,42 +112,42 @@
   112|    743|    
   113|  2.97k|    for(int i = 0 ; i<coords.size(); i+=2){
   114|  2.22k|        if(coords[i]>xMax){
-  115|  1.14k|            xMax=coords[i];
-  116|  1.14k|        }
+  115|  1.11k|            xMax=coords[i];
+  116|  1.11k|        }
   117|  2.22k|    }
   118|    743|    
   119|  2.97k|    for(int i=1; i<coords.size(); i+=2){
   120|  2.22k|        if(coords[i]>yMax){
-  121|  1.01k|            yMax=coords[i];
-  122|  1.01k|        }
+  121|  1.04k|            yMax=coords[i];
+  122|  1.04k|        }
   123|  2.22k|    }
   124|    743|    if (intersection1.first<xMax && intersection1.second<yMax && intersection1.first>0 && intersection1.second>0){
-  125|    202|        //if intersection y > AB max y
-  126|    202|        if(intersection1.second > coords[1]){
-  127|     49|            return false;
-  128|     49|        }
-  129|    153|        return true;
-  130|    153|    }
-  131|    541|    if(intersection2.first<xMax && intersection2.second<yMax && intersection2.second>0 && intersection2.second>0){
-  132|     71|        return true;
-  133|     71|    }
-  134|    470|    return false;
-  135|    470|}
+  125|    203|        //if intersection y > AB max y
+  126|    203|        if(intersection1.second > coords[1]){
+  127|     44|            return false;
+  128|     44|        }
+  129|    159|        return true;
+  130|    159|    }
+  131|    540|    if(intersection2.first<xMax && intersection2.second<yMax && intersection2.second>0 && intersection2.second>0){
+  132|     76|        return true;
+  133|     76|    }
+  134|    464|    return false;
+  135|    464|}
   136|       |
   137|       |//adapted from https://www.geeksforgeeks.org/program-check-three-points-collinear/
-  138|  2.07k|bool collinear(int x1, int y1, int x2,int y2, int x3, int y3) {
-  139|  2.07k|    int a = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
-  140|  2.07k|    return (a == 0);
-  141|  2.07k|}
+  138|  2.03k|bool collinear(int x1, int y1, int x2,int y2, int x3, int y3) {
+  139|  2.03k|    int a = x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2);
+  140|  2.03k|    return (a == 0);
+  141|  2.03k|}
   142|       |
   143|       |//"error 4" -- if any three points are colinear
-  144|    519|bool error4(std::vector<int> vect){
-  145|    519|    if(collinear(0, 0, vect[0], vect[1], vect[2], vect[3])) return true;//A B C
-  146|    519|    if(collinear(0, 0, vect[0], vect[1], vect[4], vect[5])) return true;//A B D
-  147|    519|    if(collinear(0, 0, vect[2], vect[3], vect[4], vect[5])) return true;//A C D
-  148|    519|    if(collinear(vect[0], vect[1], vect[2], vect[3], vect[4], vect[5])) return true;//B C D
-  149|    519|    return false;
-  150|    519|}
+  144|    508|bool error4(std::vector<int> vect){
+  145|    508|    if(collinear(0, 0, vect[0], vect[1], vect[2], vect[3])) return true;//A B C
+  146|    508|    if(collinear(0, 0, vect[0], vect[1], vect[4], vect[5])) return true;//A B D
+  147|    508|    if(collinear(0, 0, vect[2], vect[3], vect[4], vect[5])) return true;//A C D
+  148|    508|    if(collinear(vect[0], vect[1], vect[2], vect[3], vect[4], vect[5])) return true;//B C D
+  149|    507|    return false;
+  150|    507|}
   151|       |
   152|  1.09k|std::vector<int> parseToVector(std::string &string){
   153|  1.09k|    std::stringstream iss(string);
@@ -165,27 +165,27 @@
   165|  1.09k|}
   166|       |
   167|       |//slope = (Y2 - Y1)/(X2 - X1)
-  168|  2.07k|double slope(const int &xA, const int &yA, const int &xB, const int &yB){
-  169|  2.07k|    if(yB - yA == 0 || xB - xA == 0) return 0; //return zero for horizontal or vertical lines
-  170|    684|    double slopeAB = (double)(yB - yA)/(double)(xB - xA);
-  171|    684|    return slopeAB;
-  172|    684|}
+  168|  2.02k|double slope(const int &xA, const int &yA, const int &xB, const int &yB){
+  169|  2.02k|    if(yB - yA == 0 || xB - xA == 0) return 0; //return zero for horizontal or vertical lines
+  170|    640|    double slopeAB = (double)(yB - yA)/(double)(xB - xA);
+  171|    640|    return slopeAB;
+  172|    640|}
   173|       |
   174|       |//distance between two vertices
-  175|  2.07k|double distance(const int &x1, const int &y1, const int &x2, const int &y2){
-  176|  2.07k|    double distance = 0;
-  177|  2.07k|    distance = sqrt(pow((x2 - x1),2) + pow((y2 - y1),2));
-  178|  2.07k|    return distance;
-  179|  2.07k|}
+  175|  2.02k|double distance(const int &x1, const int &y1, const int &x2, const int &y2){
+  176|  2.02k|    double distance = 0;
+  177|  2.02k|    distance = sqrt(pow((x2 - x1),2) + pow((y2 - y1),2));
+  178|  2.02k|    return distance;
+  179|  2.02k|}
   180|       |
-  181|  1.29k|bool areParallel(const double &slopeA, const double &slopeB){
-  182|  1.29k|    return (std::abs((slopeA - slopeB)) < 0.001);
-  183|  1.29k|}
+  181|  1.24k|bool areParallel(const double &slopeA, const double &slopeB){
+  182|  1.24k|    return (std::abs((slopeA - slopeB)) < 0.001);
+  183|  1.24k|}
   184|       |
   185|       |//are both pairs of opposite sides parallel? .
-  186|    519|bool isParallelogram(const double &slopeAB, const double &slopeBC, const double &slopeCD, const double &slopeDA){
-  187|    519|    return areParallel(slopeAB, slopeCD) && areParallel(slopeDA, slopeBC);
-  188|    519|}
+  186|    507|bool isParallelogram(const double &slopeAB, const double &slopeBC, const double &slopeCD, const double &slopeDA){
+  187|    507|    return areParallel(slopeAB, slopeCD) && areParallel(slopeDA, slopeBC);
+  188|    507|}
   189|       |
   190|       |// Rectangle: four right angles (slopes of all 4 lines must be zero since one vertice is locked at 0,0)
   191|    686|bool isRectangle(const double &slopeAB, const double &slopeBC, const double &slopeCD, const double &slopeDA){
@@ -198,30 +198,30 @@
   198|    393|}
   199|       |
   200|       |// Trapezoid: only one pair of parallel sides
-  201|    126|bool isTrapezoid(const double &slopeAB, const double &slopeBC, const double &slopeCD, const double &slopeDA){
-  202|    126|    return ((areParallel(slopeAB,slopeCD) && !areParallel(slopeBC, slopeDA)) || (!areParallel(slopeAB,slopeCD) && areParallel(slopeBC, slopeDA)));
-  203|    126|}
+  201|    114|bool isTrapezoid(const double &slopeAB, const double &slopeBC, const double &slopeCD, const double &slopeDA){
+  202|    114|    return ((areParallel(slopeAB,slopeCD) && !areParallel(slopeBC, slopeDA)) || (!areParallel(slopeAB,slopeCD) && areParallel(slopeBC, slopeDA)));
+  203|    114|}
   204|       |
   205|       |// Kite: two pairs of adjacent congruent sides
-  206|    124|bool isKite(const double &distanceAB, const double &distanceBC, const double &distanceCD, const double &distanceDA){
-  207|    124|    int counter = 0;
-  208|    124|    if(distanceAB == distanceBC || distanceAB == distanceDA) counter++;
-  209|    124|    if(distanceCD == distanceDA || distanceCD == distanceBC) counter++;
-  210|    124|    return counter == 2;
-  211|    124|}
+  206|    114|bool isKite(const double &distanceAB, const double &distanceBC, const double &distanceCD, const double &distanceDA){
+  207|    114|    int counter = 0;
+  208|    114|    if(distanceAB == distanceBC || distanceAB == distanceDA) counter++;
+  209|    114|    if(distanceCD == distanceDA || distanceCD == distanceBC) counter++;
+  210|    114|    return counter == 2;
+  211|    114|}
   212|       |
-  213|    519|void printQuadrilateralType(const std::vector<int> &vect){
-  214|    519|    if(vect.size() != 0) {
-  215|    519|        double distanceAB = distance(0,0,vect[0],vect[1]);
-  216|    519|        double distanceBC = distance(vect[0],vect[1],vect[2],vect[3]);
-  217|    519|        double distanceCD = distance(vect[2],vect[3],vect[4],vect[5]);
-  218|    519|        double distanceDA = distance(vect[4],vect[5],0,0);
-  219|    519|        double slopeAB = slope(0,0,vect[0],vect[1]);
-  220|    519|        double slopeBC = slope(vect[0],vect[1],vect[2],vect[3]);
-  221|    519|        double slopeCD = slope(vect[2],vect[3],vect[4],vect[5]);
-  222|    519|        double slopeDA = slope(0,0,vect[4],vect[5]);
-  223|    519|        
-  224|    519|        if(isParallelogram(slopeAB, slopeBC, slopeCD, slopeDA)){
+  213|    507|void printQuadrilateralType(const std::vector<int> &vect){
+  214|    507|    if(vect.size() != 0) {
+  215|    507|        double distanceAB = distance(0,0,vect[0],vect[1]);
+  216|    507|        double distanceBC = distance(vect[0],vect[1],vect[2],vect[3]);
+  217|    507|        double distanceCD = distance(vect[2],vect[3],vect[4],vect[5]);
+  218|    507|        double distanceDA = distance(vect[4],vect[5],0,0);
+  219|    507|        double slopeAB = slope(0,0,vect[0],vect[1]);
+  220|    507|        double slopeBC = slope(vect[0],vect[1],vect[2],vect[3]);
+  221|    507|        double slopeCD = slope(vect[2],vect[3],vect[4],vect[5]);
+  222|    507|        double slopeDA = slope(0,0,vect[4],vect[5]);
+  223|    507|        
+  224|    507|        if(isParallelogram(slopeAB, slopeBC, slopeCD, slopeDA)){
   225|    393|            if(isRectangle(slopeAB, slopeBC, slopeCD, slopeDA) && isRhombus(distanceAB, distanceBC, distanceCD, distanceDA)){
   226|    100|                std::cout << "square" << std::endl;
   227|    293|            } else if (isRectangle(slopeAB, slopeBC, slopeCD, slopeDA)){
@@ -230,27 +230,27 @@
   230|      0|                std::cout << "rhombus" << std::endl;
   231|     97|            } else std::cout << "parallelogram" << std::endl;
   232|    393|        } else if (isTrapezoid(slopeAB, slopeBC, slopeCD, slopeDA)){
-  233|      2|            std::cout << "trapezoid" << std::endl;
-  234|    124|        } else if (isKite(distanceAB, distanceBC, distanceCD, distanceDA)){
+  233|      0|            std::cout << "trapezoid" << std::endl;
+  234|    114|        } else if (isKite(distanceAB, distanceBC, distanceCD, distanceDA)){
   235|      0|            std::cout << "kite" << std::endl;
-  236|    124|        } else std::cout << "quadrilateral" << std::endl;
-  237|    519|    }
-  238|    519|    //    std::cout << "BLANK LINE" << std::endl;
-  239|    519|}
+  236|    114|        } else std::cout << "quadrilateral" << std::endl;
+  237|    507|    }
+  238|    507|    //    std::cout << "BLANK LINE" << std::endl;
+  239|    507|}
   240|       |
   241|  1.05k|int main(int argc, const char * argv[]) {
   242|  1.05k|    vector<int> vertices;
   243|  1.05k|    string line;
   244|  2.49k|    while(getline(cin, line)){
   245|  1.44k|        if(error1(line)){
-  246|    348|            exitError("error 1");
-  247|    348|//            continue;
-  248|    348|        }
+  246|    347|            exitError("error 1");
+  247|    347|//            continue;
+  248|    347|        }
   249|  1.44k|        vertices = parseToVector(line);
   250|  1.44k|        if(error1(vertices)){
-  251|      2|            exitError("error 1");
-  252|      2|//            continue;
-  253|      2|        }
+  251|      3|            exitError("error 1");
+  252|      3|//            continue;
+  253|      3|        }
   254|  1.44k|        assert(vertices.size() == 6);
   255|  4.45k|        for(int i: vertices){
   256|  4.45k|            assert(i <= 100 && i >= 0);
@@ -260,13 +260,13 @@
   260|      0|//            continue;
   261|      0|        }
   262|  1.44k|        if(error3(vertices)){
-  263|    224|            exitError("error 3");
-  264|    224|//            continue;
-  265|    224|        }
+  263|    235|            exitError("error 3");
+  264|    235|//            continue;
+  265|    235|        }
   266|  1.44k|        if(error4(vertices)){
-  267|      0|            exitError("error 4");
-  268|      0|//            continue;
-  269|      0|        }
+  267|      1|            exitError("error 4");
+  268|      1|//            continue;
+  269|      1|        }
   270|  1.44k|        printQuadrilateralType(vertices);
   271|  1.44k|    }
   272|  1.05k|}

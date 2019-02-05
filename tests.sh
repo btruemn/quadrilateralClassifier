@@ -55,5 +55,5 @@ echo "ERROR"
 exit 1
 elif [ $errorCounter -eq 0 ]
 then
-echo "OK"
+echo "OK (all tests passed)"
 fi
