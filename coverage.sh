@@ -3,19 +3,19 @@
 clang++ -fprofile-instr-generate -fcoverage-mapping main.cpp -o main
 
 #RANDOM INTS
-for i in `seq 1 400`;
+for i in `seq 1 350`;
 do
-    LLVM_PROFILE_FILE="profraw/$i.profraw" ./main < quadrilateralFizzer/testFiles/randomInt/$i.txt > quadrilateralFizzer/testFiles/randomInt/output$i.txti.txt
+    LLVM_PROFILE_FILE="profraw/$i.profraw" ./main < quadrilateralFizzer/testFiles/randomInt/$i.txt > quadrilateralFizzer/testFiles/randomInt/output$i.txt
 done
 
 #RANDOM ASCII
-for i in `seq 1 400`;
+for i in `seq 1 350`;
 do
-    LLVM_PROFILE_FILE="profraw/ascii$i.profraw" ./main < quadrilateralFizzer/testFiles/randomASCII/$i.txt > quadrilateralFizzer/testFiles/randomASCII/output$i.txti.txt
+    LLVM_PROFILE_FILE="profraw/ascii$i.profraw" ./main < quadrilateralFizzer/testFiles/randomASCII/$i.txt > quadrilateralFizzer/testFiles/randomASCII/output$i.txt
 done
 
 #RANDOM LARGE INT
-for i in `seq 1 400`;
+for i in `seq 1 350`;
 do
     LLVM_PROFILE_FILE="profraw/largeInt$i.profraw" ./main < quadrilateralFizzer/testFiles/randomLargeInt/$i.txt > quadrilateralFizzer/testFiles/randomLargeInt/output$i.txt
 done
@@ -24,19 +24,18 @@ LLVM_PROFILE_FILE="profraw/square.profraw" ./main < quadrilateralFizzer/testFile
 LLVM_PROFILE_FILE="profraw/rectangle.profraw" ./main < quadrilateralFizzer/testFiles/shapes/testRectangles.txt > quadrilateralFizzer/testFiles/shapes/outputRectangles.txt
 LLVM_PROFILE_FILE="profraw/parallelogram.profraw" ./main < quadrilateralFizzer/testFiles/shapes/testParallelograms.txt > quadrilateralFizzer/testFiles/shapes/outputParallelograms.txt
 
-
 str=""
-for i in `seq 1 400`;
+for i in `seq 1 350`;
 do
     str+="profraw/$i.profraw "
 done
 
-for i in `seq 1 400`;
+for i in `seq 1 350`;
 do
     str+="profraw/ascii$i.profraw "
 done
 
-for i in `seq 1 400`;
+for i in `seq 1 350`;
 do
     str+="profraw/largeInt$i.profraw "
 done
@@ -47,8 +46,7 @@ str+="profraw/rectangle.profraw"
 
 llvm-profdata merge -sparse $str -o coverage.profdata
 # llvm-cov show ./main -instr-profile=coverage.profdata > coverage.txt
-llvm-cov show ./main -instr-profile=coverage.profdata
-
+llvm-cov show ./main -instr-profile=coverage.profdata > coverage.txt
 
 # for i in 'seq 1 800';
 # do

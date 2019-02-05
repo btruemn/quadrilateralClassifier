@@ -247,6 +247,10 @@ int main(int argc, const char * argv[]) {
 //            continue;
         }
         vertices = parseToVector(line);
+        assert(vertices.size() == 6);
+        for(int i: vertices){
+            assert(i <= 100 && i >= 0);
+        }
         if(error1(vertices)){
             exitError("error 1");
 //            continue;
