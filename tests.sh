@@ -1,6 +1,11 @@
 #!/bin/bash
 
-clang++ -fsanitize=address -fprofile-instr-generate -fcoverage-mapping main.cpp -o main
+cd quadrilateralFizzer
+chmod +x test.py
+python3 test.py
+cd ..
+
+clang++ -std=c++11 -fsanitize=address main.cpp -o main
 errorCounter=0;
 
 #RANDOM INTS
