@@ -7,7 +7,7 @@ import string
 
 
 def make_randomInt_1_to_100():
-    for index in range(1, 351):
+    for index in range(1, 3351):
         filename = "%s.txt" % index
         path_to_file = pjoin("testFiles", "randomInt", filename)
         file = open(path_to_file, "w")
@@ -19,7 +19,7 @@ def make_randomInt_1_to_100():
 
 
 def make_randomNumber_101_to_sysMaxSize():
-    for index in range(1, 351):
+    for index in range(1, 3351):
         filename = "%s.txt" % index
         path_to_file = pjoin("testFiles", "randomLargeInt", filename)
         file = open(path_to_file, "w")
@@ -35,7 +35,7 @@ def make_randomNumber_101_to_sysMaxSize():
 
 
 def make_random_ascii_string():
-    for index in range(1, 351):
+    for index in range(1, 3351):
         filename = "%s.txt" % index
         path_to_file = pjoin("testFiles", "randomASCII", filename)
         file = open(path_to_file, "w")
@@ -128,10 +128,10 @@ def make_parallelogram_key():
 make_randomInt_1_to_100()
 make_randomNumber_101_to_sysMaxSize()
 make_random_ascii_string()
-make_square()
-make_square_key()
-make_rectangle()
-make_rectangle_key()
-make_parallelogram()
-make_parallelogram_key()
+# make_square()
+# make_square_key()
+# make_rectangle()
+# make_rectangle_key()
+# make_parallelogram()
+# make_parallelogram_key()
 print("test files generated")

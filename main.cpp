@@ -14,7 +14,7 @@
 #include <sstream>
 #include <cmath>
 using namespace std;
-#define pdd pair<double, double>
+#define pdd pair<int, int>
 
 /* Classifies Quadrilaterals according to https://www.varsitytutors.com/hotmath/hotmath_help/topics/quadrilaterals.
  In particular, see the Venn diagram at the bottom of the page. Always classify a quadrilateral as precisely as possible. In other words, a square is also a rectangle, but since "square" is the more precise classification it is what you should print.
@@ -65,74 +65,80 @@ bool isError2(std::vector<int> vect){
     return false;
 }
 
-//"error 3" -- if any three points are colinear
-//A1 and A2 are 0 and 1
-//B1 and B2 are 2 and 3
-//C1 and C2 are 4 and 5
-//D1 and D2 are 6 and 7
-pdd lineLineIntersection (pdd A, pdd B, pdd C, pdd D) {
-    // Line AB represented as a1x + b1y = c1
-    double a1 = B.second - A.second;
-    double b1 = A.first - B.first;
-    double c1 = a1*(A.first) + b1*(A.second);
-    
-    // Line CD represented as a2x + b2y = c2
-    double a2 = D.second - C.second;
-    double b2 = C.first - D.first;
-    double c2 = a2*(C.first)+ b2*(C.second);
-    
-    double determinant = a1*b2 - a2*b1;
-    
-    if (determinant == 0)
-    {
-        // The lines are parallel. This is simplified
-        // by returning a pair of FLT_MAX
-        return make_pair((double)__FLT_MAX__, (double)__FLT_MAX__);
-    }
-    else
-    {
-        double x = (b2*c1 - b1*c2)/determinant;
-        double y = (a1*c2 - a2*c1)/determinant;
-        return make_pair(x, y);
-    }
-}
+//error3 - if lines intersect
+struct Point
+{
+    int x;
+    int y;
+};
 
-bool isError3 (const vector<int> &coords){
-    pdd A = make_pair(0, 0);
-    pdd B = make_pair(coords[0], coords[1]);
-    pdd C = make_pair(coords[2], coords[3]);
-    pdd D = make_pair(coords[4], coords[5]);
-    
-    //line AB BC CD DA
-    pdd intersection1 = lineLineIntersection(A, B, C, D);
-    pdd intersection2 = lineLineIntersection(A, D, C, B);
-    
-    int xMax = 0;
-    int yMax = 0;
-    
-    for(int i = 0 ; i<coords.size(); i+=2){
-        if(coords[i]>xMax){
-            xMax=coords[i];
-        }
-    }
-    
-    for(int i=1; i<coords.size(); i+=2){
-        if(coords[i]>yMax){
-            yMax=coords[i];
-        }
-    }
-    if (intersection1.first<xMax && intersection1.second<yMax && intersection1.first>0 && intersection1.second>0){
-        //if intersection y > AB max y
-        if(intersection1.second > coords[1]){
-            return false;
-        }
+// Given three colinear points p, q, r, the function checks if
+// point q lies on line segment 'pr'
+bool onSegment(Point p, Point q, Point r)
+{
+    if (q.x <= max(p.x, r.x) && q.x >= min(p.x, r.x) &&
+        q.y <= max(p.y, r.y) && q.y >= min(p.y, r.y))
         return true;
-    }
-    if(intersection2.first<xMax && intersection2.second<yMax && intersection2.second>0 && intersection2.second>0){
-        return true;
-    }
+    
     return false;
 }
+
+// To find orientation of ordered triplet (p, q, r).
+// The function returns following values
+// 0 --> p, q and r are colinear
+// 1 --> Clockwise
+// 2 --> Counterclockwise
+int orientation(Point p, Point q, Point r)
+{
+    // See 10th slides from following link for derivation of the formula
+    // http://www.dcs.gla.ac.uk/~pat/52233/slides/Geometry1x1.pdf
+    int val = (q.y - p.y) * (r.x - q.x) -
+    (q.x - p.x) * (r.y - q.y);
+    
+    if (val == 0) return 0;  // colinear
+    
+    return (val > 0)? 1: 2; // clock or counterclock wise
+}
+
+// The main function that returns true if line segment 'p1q1'
+// and 'p2q2' intersect.
+bool doIntersect(Point p1, Point q1, Point p2, Point q2)
+{
+    // Find the four orientations needed for general and
+    // special cases
+    int o1 = orientation(p1, q1, p2);
+    int o2 = orientation(p1, q1, q2);
+    int o3 = orientation(p2, q2, p1);
+    int o4 = orientation(p2, q2, q1);
+    
+    // General case
+    if (o1 != o2 && o3 != o4)
+        return true;
+    
+    // Special Cases
+    // p1, q1 and p2 are colinear and p2 lies on segment p1q1
+    if (o1 == 0 && onSegment(p1, p2, q1)) return true;
+    
+    // p1, q1 and p2 are colinear and q2 lies on segment p1q1
+    if (o2 == 0 && onSegment(p1, q2, q1)) return true;
+    
+    // p2, q2 and p1 are colinear and p1 lies on segment p2q2
+    if (o3 == 0 && onSegment(p2, p1, q2)) return true;
+    
+    // p2, q2 and q1 are colinear and q1 lies on segment p2q2
+    if (o4 == 0 && onSegment(p2, q1, q2)) return true;
+    
+    return false; // Doesn't fall in any of the above cases
+}
+
+bool isError3(std::vector<int> vect){
+    struct Point A = {0,0}, B = {vect[0], vect[1]}, C = {vect[2], vect[3]}, D = {vect[4], vect[5]};
+    //only opposite lines can intersect
+    if(doIntersect(A, B, C, D)) return true;
+    if(doIntersect(B, C, D, A)) return true;
+    return false;
+}
+
 
 //adapted from https://www.geeksforgeeks.org/program-check-three-points-collinear/
 bool collinear(int x1, int y1, int x2,int y2, int x3, int y3) {
