@@ -22,14 +22,14 @@ using namespace std;
  Input lines are of the form:
  x1 y1 x2 y2 x3 y3
  All input values are integers in the range 0..100 (inclusive).
-
+ 
  If your program gets an invalid line of input it must print one of the strings below and then terminate. It should print:
  
  "error 1" -- if the line contains the wrong number of points, contains invalid characters, has coordinates out of the range 0..100, or otherwise fails to describe three points (six integer values)
  "error 2" -- if any two points coincide
  "error 3" -- if any two line segments representing sides cross each other
  "error 4" -- if any three points are colinear1
-*/
+ */
 
 //must contain 0-9 or space only. Returns true if an errof is found http://www.cplusplus.com/reference/string/string/find_first_not_of/
 bool isError1(std::string s){
@@ -49,7 +49,7 @@ bool isError1(std::vector<int> vect){
 
 void exitError(std::string error){
     std::cout << error << std::endl;
-        exit (EXIT_FAILURE);
+    exit (EXIT_FAILURE);
 }
 
 //"error 2" -- if any two points coincide http://www.cplusplus.com/reference/vector/vector/operators/
@@ -172,9 +172,10 @@ std::vector<int> parseToVector(std::string &string){
 
 //slope = (Y2 - Y1)/(X2 - X1)
 double slope(const int &xA, const int &yA, const int &xB, const int &yB){
-//    if(yB - yA == 0 || xB - xA == 0) return 0; //return zero for horizontal or vertical lines
-    double slopeAB = (double)(yB - yA)/(double)(xB - xA);
-    return slopeAB;
+    //    if(yB - yA == 0 || xB - xA == 0) return 0; //return zero for horizontal or vertical lines
+    if(yB - yA == 0) return 0;
+    if(xB - xA == 0) return INT_MAX;
+    return (double)(yB - yA)/(double)(xB - xA);
 }
 
 //distance between two vertices
@@ -185,6 +186,7 @@ double distance(const int &x1, const int &y1, const int &x2, const int &y2){
 }
 
 bool areParallel(const double &slopeA, const double &slopeB){
+    //    if(slopeA == INFINITY && slopeB == INFINITY) return true;
     return (std::abs((slopeA - slopeB)) < 0.001);
 }
 
@@ -195,7 +197,12 @@ bool isParallelogram(const double &slopeAB, const double &slopeBC, const double 
 
 // Rectangle: four right angles (slopes of all 4 lines must be zero since one vertice is locked at 0,0)
 bool isRectangle(const double &slopeAB, const double &slopeBC, const double &slopeCD, const double &slopeDA){
-    return (slopeAB == 0 && slopeBC == 0 && slopeCD == 0 && slopeDA == 0);
+    bool a = slopeAB == 0;
+    bool b = slopeBC == INT_MAX;
+    bool c = slopeCD == 0;
+    bool d = slopeDA == INT_MAX;
+    return a && b && c && d;
+    //    return (slopeAB == INFINITY && slopeBC == 0 && slopeCD == INFINITY && slopeDA == 0);
 }
 
 // Rhombus: four sides of the same length

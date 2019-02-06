@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/../Assignment3/Assignment3.xcodeproj/project.xcworkspace/xcuserdata/btrueman.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment3/Assignment3.xcodeproj/project.xcworkspace/xcuserdata/btrueman.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Assignment3/Assignment3.xcodeproj/xcuserdata/btrueman.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" beforeDir="false" afterPath="$PROJECT_DIR$/../Assignment3/Assignment3.xcodeproj/xcuserdata/btrueman.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../tests.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../tests.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="121" column="34" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="34" />
+            <state relative-caret-position="320">
+              <caret line="108" column="10" lean-forward="true" selection-start-line="108" selection-start-column="10" selection-end-line="108" selection-end-column="10" />
               <folding>
                 <element signature="e#24#37#0" expanded="true" />
               </folding>
@@ -136,15 +135,16 @@
       <option name="presentableId" value="Default" />
       <updated>1548989380594</updated>
       <workItem from="1548989383271" duration="16177000" />
-      <workItem from="1549474240510" duration="371000" />
+      <workItem from="1549474240510" duration="751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16548000" />
+    <option name="totallyTimeSpent" value="16928000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.076537915" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -176,8 +176,8 @@
     <entry file="file://$PROJECT_DIR$/5.txt" />
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="121" column="34" selection-start-line="121" selection-start-column="34" selection-end-line="121" selection-end-column="34" />
+        <state relative-caret-position="320">
+          <caret line="108" column="10" lean-forward="true" selection-start-line="108" selection-start-column="10" selection-end-line="108" selection-end-column="10" />
           <folding>
             <element signature="e#24#37#0" expanded="true" />
           </folding>
