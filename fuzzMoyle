@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd quadrilateralFizzer
+chmod +x test.py
+python3 test.py
+cd ..
+
+sh tests.sh
+sh coverage.sh

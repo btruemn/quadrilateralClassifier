@@ -65,7 +65,7 @@ bool isError2(std::vector<int> vect){
     return false;
 }
 
-//error3 - if lines intersect
+//error3 - if lines intersect - taken from https://codea.io/talk/discussion/5930/line-segment-intersection
 struct Point
 {
     int x;
@@ -172,7 +172,7 @@ std::vector<int> parseToVector(std::string &string){
 
 //slope = (Y2 - Y1)/(X2 - X1)
 double slope(const int &xA, const int &yA, const int &xB, const int &yB){
-    if(yB - yA == 0 || xB - xA == 0) return 0; //return zero for horizontal or vertical lines
+//    if(yB - yA == 0 || xB - xA == 0) return 0; //return zero for horizontal or vertical lines
     double slopeAB = (double)(yB - yA)/(double)(xB - xA);
     return slopeAB;
 }

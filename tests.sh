@@ -28,7 +28,7 @@ diff quadrilateralFizzer/testFiles/shapes/outputSquares.txt quadrilateralFizzer/
 error=$?
 if [ $error -eq 1 ]
 then
-errorCounter+=1
+errorCounter=$((errorCounter + 1))
 fi
 
 #RECTANGLE
@@ -37,7 +37,7 @@ diff quadrilateralFizzer/testFiles/shapes/outputRectangles.txt quadrilateralFizz
 error=$?
 if [ $error -eq 1 ]
 then
-errorCounter+=1
+errorCounter=$((errorCounter + 1))
 fi
 
 #PARALLELOGRAM
@@ -46,7 +46,7 @@ diff quadrilateralFizzer/testFiles/shapes/outputParallelograms.txt quadrilateral
 error=$?
 if [ $error -eq 1 ]
 then
-errorCounter+=1
+errorCounter=$((errorCounter + 1))
 fi
 
 if [ $errorCounter \> 0 ]
