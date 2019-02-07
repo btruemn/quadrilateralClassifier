@@ -187,7 +187,7 @@ double distance(const int &x1, const int &y1, const int &x2, const int &y2){
 
 bool areParallel(const double &slopeA, const double &slopeB){
     //    if(slopeA == INFINITY && slopeB == INFINITY) return true;
-    return (std::abs((slopeA - slopeB)) < 0.001);
+    return (std::abs((slopeA - slopeB)) < 0.0001);
 }
 
 //are both pairs of opposite sides parallel? .

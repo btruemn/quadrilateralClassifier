@@ -2,24 +2,24 @@
 
 clang++ -std=c++14 -fsanitize=address main.cpp -o main
 errorCounter=0;
-
-#RANDOM INTS
-for i in `seq 1 350`;
-do
-    ./main < quadrilateralFizzer/testFiles/randomInt/$i.txt > quadrilateralFizzer/testFiles/randomInt/output$i.txt
-done
-
-#RANDOM ASCII
-for i in `seq 1 350`;
-do
-    ./main < quadrilateralFizzer/testFiles/randomASCII/$i.txt > quadrilateralFizzer/testFiles/randomASCII/output$i.txt
-done
-
-#RANDOM LARGE INT
-for i in `seq 1 350`;
-do
-    ./main < quadrilateralFizzer/testFiles/randomLargeInt/$i.txt > quadrilateralFizzer/testFiles/randomLargeInt/output$i.txt
-done
+#
+# #RANDOM INTS
+# for i in `seq 1 350`;
+# do
+#     ./main < quadrilateralFizzer/testFiles/randomInt/$i.txt > quadrilateralFizzer/testFiles/randomInt/output$i.txt
+# done
+#
+# #RANDOM ASCII
+# for i in `seq 1 350`;
+# do
+#     ./main < quadrilateralFizzer/testFiles/randomASCII/$i.txt > quadrilateralFizzer/testFiles/randomASCII/output$i.txt
+# done
+#
+# #RANDOM LARGE INT
+# for i in `seq 1 350`;
+# do
+#     ./main < quadrilateralFizzer/testFiles/randomLargeInt/$i.txt > quadrilateralFizzer/testFiles/randomLargeInt/output$i.txt
+# done
 
 
 #SQUARE
